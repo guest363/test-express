@@ -1,0 +1,24 @@
+{
+  "name": "test-express",
+  "version": "1.0.0",
+  "description": "Task from it recruiting agency",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guest363/test-express.git"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "typescript"
+  ],
+  "author": "Oleg Moiseev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guest363/test-express/issues"
+  },
+  "homepage": "https://github.com/guest363/test-express#readme"
+}

@@ -1,0 +1,12 @@
+.dockerignore
+./log
+./tmp
+./src
+./doc
+./node_modules
+.git
+*Dockerfile*
+*docker-compose*
+.cache
+./test
+./.vscode
