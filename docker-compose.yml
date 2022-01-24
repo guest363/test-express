@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  db:
+    build: ./db
+    volumes:
+      - data:/data/db
+    restart: on-failure:5
+    ports:
+      - '${MONGO_PORT}:27017'
+    env_file:
+      - './.env'
+  server:
+    build:
+      context: ./
+    volumes:
+      - ./log:/app/log
+      - ./build:/app/build
+    depends_on:
+      - db
+    restart: on-failure:5
+    ports:
+      - '${PORT}:${PORT}'
+    env_file:
+      - './.env'
+networks:
+  default:
+    name: test-express
+volumes:
+  data:
+    external: true
