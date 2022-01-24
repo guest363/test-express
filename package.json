@@ -4,7 +4,11 @@
   "description": "Task from it recruiting agency",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:fix": "eslint --cache --ext .ts . --fix",
+    "lint": "eslint --cache --ext .ts .",
+    "build:dev": "tsc --watch --preserveWatchOutput",
+    "start:dev": "nodemon build/app.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +26,10 @@
   },
   "homepage": "https://github.com/guest363/test-express#readme",
   "dependencies": {
+    "body-parser": "^1.19.1",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
+    "express-pino-logger": "^7.0.0",
     "mongoose": "^6.1.8",
     "nodemon": "^2.0.15",
     "pino": "^7.6.4",
@@ -31,6 +37,8 @@
     "typescript": "^4.5.5"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/express-pino-logger": "^4.0.3",
     "@types/node": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
