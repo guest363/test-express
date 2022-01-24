@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Express, Request, Response } from 'express';
 import expressPino from 'express-pino-logger';
 import pino, { DestinationStream } from 'pino';
 
@@ -73,6 +73,7 @@ export class Logger {
     const loggerMiddleware = expressPino({
       logger: this.pino,
     });
+
     app.use(loggerMiddleware);
   }
 

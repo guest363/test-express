@@ -8,8 +8,10 @@ dotenv.config({
 export const config = {
   PORT: parseInt(String(process.env.PORT), 10),
   NODE_ENV: process.env.NODE_ENV || 'production',
-  MONGO_CONNECTION_STRING: process.env.MONGO_CONNECTION_STRING,
   JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
   LOG_LEVEL: parseInt(String(process.env.LOG_LEVEL), 10) || 4,
-  MONGO_PORT: Number(process.env.PGPORT),
+  MONGO_PORT: Number(process.env.MONGO_PORT),
+  MONGO_DB: process.env.MONGO_DB || 'test-task',
+  MONGO_HOST: process.env.MONGO_HOST || 'localhost',
+  MONGO_URI_PREFIX: 'mongodb://',
 };

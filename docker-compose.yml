@@ -6,9 +6,10 @@ services:
       - data:/data/db
     restart: on-failure:5
     ports:
-      - '${MONGO_PORT}:27017'
+      - '${MONGO_PORT}:${MONGO_PORT}'
     env_file:
       - './.env'
+    command: 'mongod --port ${MONGO_PORT} --bind_ip_all'
   server:
     build:
       context: ./
