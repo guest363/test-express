@@ -43,7 +43,6 @@ export class Logger {
     this.pino = pino(
       {
         level: logLevels[this.logLevel],
-        prettyPrint: true,
         serializers: {
           res(reply: Response) {
             return {
