@@ -47,7 +47,7 @@ userSchema.set('toJSON', { virtuals: true });
  */
 userSchema
   .virtual('_plainPassword')
-  .set(async function (this: User, password?: string) {
+  .set(function (this: User, password?: string) {
     if (password) {
       this._plainPassword = password;
     }
@@ -59,7 +59,8 @@ userSchema
 /* Methods */
 
 userSchema.methods.encryptPassword = async function encryptPassword() {
-  this.password = await argon2.hash(this._plainPassword);
+  const result = await argon2.hash(this._plainPassword);
+  this.password = result;
 };
 
 /**
@@ -76,13 +77,11 @@ userSchema.methods.checkPassword = async function (
   return await argon2.verify(this.password, password);
 };
 
-userSchema.methods.generateToken = async function (user: UserSign) {
+userSchema.methods.generateToken = function (user: UserSign) {
   return jwt.sign({ email: user.email } as UserSign, config.JWT_SECRET_KEY, {
     expiresIn: config.JWT_SECRET_EXPIRATION,
   });
 };
-
-
 
 /* Encrypting the password before saving the user. */
 userSchema.pre('validate', function preValidate(next) {

@@ -14,6 +14,6 @@ export const register = async (req: Request, res: Response) => {
 
     return res.status(200).send(`Создан новый пользователь ${user.email}`);
   } catch (error) {
-    return res.send(`Ошибка создания пользователя ${error}`);
+    return res.send(`Ошибка создания пользователя ${String(error)}`);
   }
 };

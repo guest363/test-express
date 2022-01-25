@@ -3,8 +3,7 @@ import { httpHandler } from '../../common/support/http-handler';
 import { PHOTO_URL } from '../../common/variables';
 import { Photo } from '../photo.shcema';
 
-export const getPhotoData = (): Promise<Photo[]> => {
-  return new Promise((resolve, reject) => {
+export const getPhotoData = (): Promise<Photo[]> => new Promise((resolve, reject) => {
     /**
    {
     "albumId": 1,
@@ -21,7 +20,6 @@ export const getPhotoData = (): Promise<Photo[]> => {
         resolve(photos);
       })
       .on('error', (err) => {
-        reject('Error: ' + err.message);
+        reject(`Error: ${  err.message}`);
       });
   });
-};

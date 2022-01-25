@@ -1,4 +1,4 @@
-import { default as buildApp } from './app';
+import buildApp from './app';
 import { config } from './common/config';
 import { Logger } from './logger';
 
@@ -17,7 +17,7 @@ const logger = new Logger(config.LOG_LEVEL);
   } catch (error) {
     if (error instanceof Error) {
       logger.error(error);
-    } else logger.error(`Can't init app - ` + error);
+    } else logger.error(`Can't init app - ${String(error)}`);
     process.exit(1);
   }
 })().catch((error: Error) => {

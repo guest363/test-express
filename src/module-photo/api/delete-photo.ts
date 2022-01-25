@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { ExtendedRequest } from '../../common/middleware/validate-token';
 import { getIdsFromParam } from '../../common/support/get-ids-from-param';
-import { PhotoModel } from './../photo.shcema';
+import { PhotoModel } from "../photo.shcema";
 
 
 /**

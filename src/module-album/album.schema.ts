@@ -1,5 +1,5 @@
 import mongoose, { Model, Schema } from 'mongoose';
-import { PhotoModel } from './../module-photo/photo.shcema';
+import { PhotoModel } from "../module-photo/photo.shcema";
 
 export interface Album {
   title: string;

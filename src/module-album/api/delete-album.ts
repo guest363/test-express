@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { ExtendedRequest } from '../../common/middleware/validate-token';
 import { getIdsFromParam } from '../../common/support/get-ids-from-param';
-import { AlbumModel } from './../album.schema';
+import { AlbumModel } from "../album.schema";
 
 /**
  * `deleteAlbum` is a function that deletes an album from the database

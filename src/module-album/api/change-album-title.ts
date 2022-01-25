@@ -1,7 +1,11 @@
 import { Response } from 'express';
 import { ExtendedRequest } from '../../common/middleware/validate-token';
-import { AlbumModel } from './../album.schema';
+import { AlbumModel } from '../album.schema';
 
+interface ChangeAlbumBody {
+  albumId: number;
+  new_album_name: string;
+}
 /**
  * @param {ExtendedRequest} req - ExtendedRequest - The request object.
  * @param {Response} res - Response - The response object.
@@ -10,7 +14,7 @@ import { AlbumModel } from './../album.schema';
 export const changeAlbumTitle = async (req: ExtendedRequest, res: Response) => {
   if (!req.body) return res.sendStatus(400);
 
-  const { albumId, new_album_name } = req.body;
+  const { albumId, new_album_name } = req.body as ChangeAlbumBody;
 
   await AlbumModel.findOneAndUpdate(
     { id: albumId },

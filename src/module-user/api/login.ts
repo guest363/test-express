@@ -1,16 +1,22 @@
 import { Request, Response } from 'express';
 import { UserModel } from '../user.schema';
 
+interface LoginBody {
+  login: string;
+  password: string;
+  email: string;
+}
+
 /**
  * @param {Request} req - Request - The request object.
  * @param {Response} res - Response - The response object.
  * @returns A token.
  */
-export const login = async (req: Request, res: Response) => {
+const loginRoute = async (req: Request, res: Response) => {
   if (!req.body) return res.sendStatus(400);
 
   try {
-    const { login, password, email } = req.body;
+    const { login, password, email } = req.body as LoginBody;
 
     /**
      * Если пришла почта - валидировать и искать по почте иначе поиск по логину
@@ -24,11 +30,16 @@ export const login = async (req: Request, res: Response) => {
       : false;
 
     if (currectLogin && currectPassword) {
-      const userJWT = await currectLogin.generateToken(currectLogin);
+      const userJWT = currectLogin.generateToken(currectLogin);
 
       return res.send({ token: userJWT });
-    } else return res.send('Incurrect data');
+    }
+    return res.send('Incurrect data');
   } catch (error) {
-    return res.send(`Common error - ${error}`);
+    if (error instanceof Error)
+      return res.send(`Common error - ${error.message}`);
+    return res.send(`Common error - ${String(error)}`);
   }
 };
+
+export default loginRoute;

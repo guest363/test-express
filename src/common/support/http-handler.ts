@@ -11,7 +11,7 @@ export const httpHandler = async (response: IncomingMessage) => {
   response.setEncoding('utf-8');
 
   for await (const chunk of response) {
-    let text = chunk.toString();
+    const text = chunk.toString();
     body += text;
   }
 
