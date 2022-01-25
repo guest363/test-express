@@ -6,9 +6,9 @@ import { AlbumModel } from './../../module-album/album.schema';
 import { PhotoModel } from './../photo.shcema';
 
 /**
- * @param {Request} req - Request - The request object.
+ * Load all photos from the API into the database.
+ * @param {ExtendedRequest} req - The request object.
  * @param {Response} res - Response - The response object.
- * @returns A token.
  */
 export const loadPhoto = async (req: ExtendedRequest, res: Response) => {
   const tokenData = req.decoded;

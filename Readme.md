@@ -35,7 +35,7 @@
    page - страница
    maxcount - максимальное кол-во фотографий, которое отдаётся
 
-6. Эндпоинт удаления фотографий (/delete-photo)
+6. Эндпоинт удаления фотографий (/delete-photo) ✔️
    Сделать проверку на авторизацию
    Принимает photoid (айдишник фотографии с базы, может иметь несколько значений через запятую)
 
@@ -65,6 +65,7 @@
 | /get-photos?ownerId={}&page={}&maxCount={} | GET | { ownerId, page, maxCount } = req.params | false | массив фото |
 | /load-photos | GET |  -  | true | код ответа |
 | /delete-photo | DELETE |  { photoId } = req.params | true | код ответа |
+| /delete-album | DELETE |  { albumId } = req.params | true | код ответа |
 
 
 ## Questions

@@ -4,9 +4,9 @@ import { UserModel } from '../../module-user/user.schema';
 import { PhotoModel } from './../photo.shcema';
 
 /**
- * @param {Request} req - Request - The request object.
+ * @param {ExtendedRequest} req - ExtendedRequest - The request object.
  * @param {Response} res - Response - The response object.
- * @returns A token.
+ * @returns The photos.
  */
 export const getPhoto = async (req: ExtendedRequest, res: Response) => {
   if (!req.query) return res.sendStatus(400);
