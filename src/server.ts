@@ -10,7 +10,7 @@ const logger = new Logger(config.LOG_LEVEL);
 (async () => {
   const app = await buildApp(logger);
   try {
-    app.listen(config.PORT, '0.0.0.0', () =>
+    app.listen(config.PORT, () =>
       logger.info(`App is running on http://localhost:${String(config.PORT)}`)
     );
     /* throw new Error('') */

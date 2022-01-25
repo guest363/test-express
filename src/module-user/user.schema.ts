@@ -22,11 +22,6 @@ export const userSchema = new Schema<User>({
     required: true,
     validate: [validator.isEmail, 'Please fill a valid email address'],
   },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6,
-  },
   registerDate: { type: Date, default: Date.now },
 });
 

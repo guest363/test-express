@@ -8,8 +8,8 @@
     "lint:fix": "eslint --cache --ext .ts . --fix",
     "lint": "eslint --cache --ext .ts .",
     "build:dev": "tsc --watch --preserveWatchOutput",
-    "dev": "nodemon src/server.ts",
-    "start": "nodemon src/server.ts",
+    "dev": "nodemon --delay 500ms src/server.ts",
+    "start": "nodemon --delay 500ms src/server.ts",
     "docker:run": "docker network create --driver=bridge test-express & docker volume create --name data -d local & docker-compose up "
   },
   "repository": {

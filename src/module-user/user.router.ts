@@ -20,7 +20,7 @@ router.route('/register').post(async (req, res) => {
 
     const user = await userModel.create(req.body);
 
-    return res.sendStatus(200).send(`Создан новый пользователь ${user.login}`);
+    return res.status(200).send(`Создан новый пользователь ${user.email}`);
   } catch (error) {
     return res.send(`Ошибка создания пользователя ${error}`);
   }
