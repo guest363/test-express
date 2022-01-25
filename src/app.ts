@@ -4,6 +4,10 @@ import { config } from './common/config';
 import { createRoutes } from './create-routes';
 import { Logger } from './logger';
 
+/**
+ * @param {Logger} logger - Logger - The logger instance
+ * @returns The express app.
+ */
 export default async function buildApp(logger: Logger) {
   const app = express();
   app.use(express.json());

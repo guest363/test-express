@@ -1,16 +1,20 @@
-import { Request, Response } from "express";
-import { userModel } from "../user.schema";
+import { Request, Response } from 'express';
+import { UserModel } from '../user.schema';
 
+/**
+ * @param {Request} req - Request - The request object.
+ * @param {Response} res - Response - The response object.
+ * @returns The user object.
+ */
+export const register = async (req: Request, res: Response) => {
+  try {
+    req.log.info(req.body);
+    if (!req.body) return res.sendStatus(400);
 
-export const register = async (req:Request, res:Response) => {
-    try {
-      req.log.info(req.body);
-      if (!req.body) return res.sendStatus(400);
-  
-      const user = await userModel.create(req.body);
-  
-      return res.status(200).send(`Создан новый пользователь ${user.email}`);
-    } catch (error) {
-      return res.send(`Ошибка создания пользователя ${error}`);
-    }
+    const user = await UserModel.create(req.body);
+
+    return res.status(200).send(`Создан новый пользователь ${user.email}`);
+  } catch (error) {
+    return res.send(`Ошибка создания пользователя ${error}`);
   }
+};

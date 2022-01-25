@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
-import { userModel } from '../user.schema';
+import { UserModel } from '../user.schema';
 
+/**
+ * @param {Request} req - Request - The request object.
+ * @param {Response} res - Response - The response object.
+ * @returns A token.
+ */
 export const login = async (req: Request, res: Response) => {
   if (!req.body) return res.sendStatus(400);
 
@@ -11,8 +16,8 @@ export const login = async (req: Request, res: Response) => {
      * Если пришла почта - валидировать и искать по почте иначе поиск по логину
      */
     const currectLogin = email
-      ? await userModel.findOne({ email })
-      : await userModel.findOne({ login });
+      ? await UserModel.findOne({ email })
+      : await UserModel.findOne({ login });
 
     const currectPassword = currectLogin
       ? currectLogin.checkPassword(password)

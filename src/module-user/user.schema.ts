@@ -4,7 +4,7 @@ import mongoose, { Model, Schema, SchemaDefinitionProperty } from 'mongoose';
 import validator from 'validator';
 import { config } from '../common/config';
 
-interface UserSign {
+export interface UserSign {
   email: string;
 }
 interface User {
@@ -57,10 +57,16 @@ userSchema
   });
 
 /* Methods */
+
 userSchema.methods.encryptPassword = async function encryptPassword() {
   this.password = await argon2.hash(this._plainPassword);
 };
 
+/**
+ * When a user calls the `checkPassword` method,
+ * we check the password they provide against the
+ * password hash stored in the database.
+ */
 userSchema.methods.checkPassword = async function (
   this: User,
   password: string
@@ -71,17 +77,20 @@ userSchema.methods.checkPassword = async function (
 };
 
 userSchema.methods.generateToken = async function (user: UserSign) {
-  return jwt.sign({ email: user.email }, config.JWT_SECRET_KEY, {
+  return jwt.sign({ email: user.email } as UserSign, config.JWT_SECRET_KEY, {
     expiresIn: config.JWT_SECRET_EXPIRATION,
   });
 };
 
+
+
+/* Encrypting the password before saving the user. */
 userSchema.pre('validate', function preValidate(next) {
   return this.encryptPassword().then(next);
 });
 
 /* Model */
-export const userModel: Model<User> = mongoose.model(
+export const UserModel: Model<User> = mongoose.model(
   'userModel',
   userSchema,
   'user'
