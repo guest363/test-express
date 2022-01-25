@@ -1,7 +1,8 @@
 import { Response } from 'express';
+import mongoose from 'mongoose';
 import { ExtendedRequest } from '../../common/middleware/validate-token';
 import { getIdsFromParam } from '../../common/support/get-ids-from-param';
-import { AlbumModel } from "../album.schema";
+import { AlbumModel } from '../album.schema';
 
 /**
  * `deleteAlbum` is a function that deletes an album from the database
@@ -15,7 +16,8 @@ export const deleteAlbum = async (req: ExtendedRequest, res: Response) => {
   const albumId = getIdsFromParam(String(req.query.albumId));
 
   for (const id of albumId) {
-    await AlbumModel.findByIdAndDelete(id);
+    if (mongoose.Types.ObjectId.isValid(id))
+      await AlbumModel.findByIdAndDelete(id);
   }
 
   return res.status(204).send();

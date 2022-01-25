@@ -15,7 +15,7 @@ services:
       context: ./
     volumes:
       - ./log:/app/log
-      - .:/app/
+      - ./:/app/
     depends_on:
       - db
     restart: on-failure:5

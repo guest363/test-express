@@ -81,7 +81,9 @@
 ### Local
 На машине должна работать база MongoDb и слушать порт заданный в перемеенной окружения MONGO_PORT, по умолчанию 5000
 
+
 Выполнить:
+- в файле .env изменить значение переменной окружения MONGO_HOST=host.docker.internal на MONGO_HOST=localhost 
 - npm install
 - npm run dev
 

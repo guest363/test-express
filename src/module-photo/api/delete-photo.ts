@@ -1,8 +1,8 @@
 import { Response } from 'express';
+import mongoose from 'mongoose';
 import { ExtendedRequest } from '../../common/middleware/validate-token';
 import { getIdsFromParam } from '../../common/support/get-ids-from-param';
-import { PhotoModel } from "../photo.shcema";
-
+import { PhotoModel } from '../photo.shcema';
 
 /**
  * `deletePhoto` is a function that deletes a photo from the database.
@@ -15,7 +15,8 @@ export const deletePhoto = async (req: ExtendedRequest, res: Response) => {
   const photoId = getIdsFromParam(String(req.query.photoId));
 
   for (const id of photoId) {
-    await PhotoModel.findByIdAndDelete(id);
+    if (mongoose.Types.ObjectId.isValid(id))
+      await PhotoModel.findByIdAndDelete(id);
   }
 
   return res.status(204).send();

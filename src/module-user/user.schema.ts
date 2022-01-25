@@ -1,9 +1,10 @@
-import * as argon2 from 'argon2';
+import crypto from 'crypto';
 import * as jwt from 'jsonwebtoken';
 import mongoose, { Model, Schema, SchemaDefinitionProperty } from 'mongoose';
 import validator from 'validator';
 import { config } from '../common/config';
 
+const hash = crypto.createHash('md5');
 export interface UserSign {
   email: string;
 }
@@ -40,11 +41,7 @@ userSchema.set('toObject', { virtuals: true });
 userSchema.set('toJSON', { virtuals: true });
 
 /* Virual support functions */
-/**
- * Пароль пишется в виде хеша алгоритма argon2
- * А так как argon2 возвращает хеш асинхронно
- * нужно городить костыль с методом и pre валидацией
- */
+
 userSchema
   .virtual('_plainPassword')
   .set(function (this: User, password?: string) {
@@ -59,7 +56,7 @@ userSchema
 /* Methods */
 
 userSchema.methods.encryptPassword = async function encryptPassword() {
-  const result = await argon2.hash(this._plainPassword);
+  const result = hash.update(this._plainPassword).copy().digest('hex');
   this.password = result;
 };
 
@@ -74,7 +71,9 @@ userSchema.methods.checkPassword = async function (
 ) {
   if (!password) return false;
 
-  return await argon2.verify(this.password, password);
+  const result = hash.update(password).copy().digest('hex');
+
+  return this.password === result;
 };
 
 userSchema.methods.generateToken = function (user: UserSign) {
