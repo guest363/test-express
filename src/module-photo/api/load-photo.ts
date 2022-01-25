@@ -31,5 +31,5 @@ export const loadPhoto = async (req: ExtendedRequest, res: Response) => {
     await PhotoModel.create({ ...photo, owner: user?.id, albumId: album.id });
   }
 
-  return res.sendStatus(200);
+  return res.status(200).send('All photo are loaded');
 };
