@@ -1,7 +1,9 @@
-# Task
+## Describe
+
+Тестовое задание от IT Recruiting Agency
+## Task
 
 Стэк:
-
 - NodeJS
 - TypeScript
 - express
@@ -89,6 +91,3 @@
 
 После этого приложение доступно по адресу localhost:{PORT} , PORT берется из файла .env и по умолчанию 4001
 
-## Questions
-
-- Зачем в качестве базы где есть связи между сущностями выбранна MongoDB ?
