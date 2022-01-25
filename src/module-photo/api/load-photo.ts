@@ -11,8 +11,6 @@ import { PhotoModel } from './../photo.shcema';
  * @returns A token.
  */
 export const loadPhoto = async (req: ExtendedRequest, res: Response) => {
-  if (!req.body) return res.sendStatus(400);
-
   const tokenData = req.decoded;
 
   const user = await UserModel.findOne(tokenData);
