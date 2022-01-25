@@ -60,10 +60,11 @@
 
 | Path        | HTTP method | Params | Request Auth | Result |
 | :---------- | :---------- | :----- | :----------- | :----- |
-| /get-photos?ownerId={}&page={}&maxCount={} | GET | { ownerId, page, maxCount } = req.params | false | массив фото |
-| /load-photos | GET |  -  | true | код ответа |
 | /login | POST |  { login, password, email } = req.body | false | токен |
 | /register | POST |  req.body | false | код ответа |
+| /get-photos?ownerId={}&page={}&maxCount={} | GET | { ownerId, page, maxCount } = req.params | false | массив фото |
+| /load-photos | GET |  -  | true | код ответа |
+| /delete-photo | DELETE |  { photoId } = req.params | true | код ответа |
 
 
 ## Questions
