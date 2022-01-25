@@ -9,6 +9,7 @@
     "lint": "eslint --cache --ext .ts .",
     "build:dev": "tsc --watch --preserveWatchOutput",
     "dev": "nodemon src/server.ts",
+    "start": "nodemon src/server.ts",
     "docker:run": "docker network create --driver=bridge test-express & docker volume create --name data -d local & docker-compose up "
   },
   "repository": {
@@ -27,6 +28,8 @@
   },
   "homepage": "https://github.com/guest363/test-express#readme",
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
+    "argon2": "^0.28.3",
     "body-parser": "^1.19.1",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",

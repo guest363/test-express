@@ -1,5 +1,5 @@
 import express from 'express';
-import { NewUser } from './user-register.model';
+import { userModel } from './user.schema';
 
 const router = express.Router();
 
@@ -12,17 +12,18 @@ router.route('/login').post((req, res) => {
 
   return res.sendStatus(200);
 });
-router.route('/register').post((req, res) => {
-  req.log.info(req.body);
-  if (!req.body) return res.sendStatus(400);
 
-  const user = new NewUser(req.body);
+router.route('/register').post(async (req, res) => {
+  try {
+    req.log.info(req.body);
+    if (!req.body) return res.sendStatus(400);
 
-  user.save(function (err?: string | Error) {
-    if (err) return req.log.error(err);
-    return res.send(user);
-  });
-  return res.sendStatus(200);
+    const user = await userModel.create(req.body);
+
+    return res.sendStatus(200).send(`Создан новый пользователь ${user.login}`);
+  } catch (error) {
+    return res.send(`Ошибка создания пользователя ${error}`);
+  }
 });
 
 export default router;
