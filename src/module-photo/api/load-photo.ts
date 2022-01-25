@@ -2,6 +2,7 @@ import { Response } from 'express';
 import { ExtendedRequest } from '../../common/middleware/validate-token';
 import { UserModel } from '../../module-user/user.schema';
 import { getPhotoData } from '../support/get-photo-data';
+import { AlbumModel } from './../../module-album/album.schema';
 import { PhotoModel } from './../photo.shcema';
 
 /**
@@ -18,10 +19,16 @@ export const loadPhoto = async (req: ExtendedRequest, res: Response) => {
 
   const photos = await getPhotoData();
 
-  console.log(photos);
-
   for (const photo of photos) {
-    await PhotoModel.create({ ...photo, owner: user?.id });
+    const albumInDb = await AlbumModel.findOne({ title: photo.albumId });
+    const album = albumInDb
+      ? albumInDb
+      : await AlbumModel.create({
+          title: photo.albumId,
+          owner: user?.id,
+        });
+
+    await PhotoModel.create({ ...photo, owner: user?.id, albumId: album.id });
   }
 
   return res.sendStatus(200);
