@@ -28,9 +28,7 @@
   },
   "homepage": "https://github.com/guest363/test-express#readme",
   "dependencies": {
-    "@types/mongoose": "^5.11.97",
     "argon2": "^0.28.3",
-    "body-parser": "^1.19.1",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "express-pino-logger": "^7.0.0",
@@ -39,10 +37,12 @@
     "nodemon": "^2.0.15",
     "pino": "^7.6.4",
     "pino-pretty": "^7.5.0",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.5",
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
     "@types/express": "^4.17.13",
     "@types/express-pino-logger": "^4.0.3",
     "@types/jsonwebtoken": "^8.5.8",

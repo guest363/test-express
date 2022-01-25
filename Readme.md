@@ -68,6 +68,24 @@
 | /delete-album | DELETE |  { albumId } = req.params | true | код ответа |
 | /change-album-title | PUT |  { albumId, new_album_name } = req.body | true | обновленный альбом |
 
+## RUN
+
+### In Docker
+На машине должен быть установлен Docker
+Выполнить:
+- docker-compose build
+- npm run docker:run
+
+После этого приложение доступно по адресу localhost:{PORT} , PORT берется из файла .env и по умолчанию 4001
+
+### Local
+На машине должна работать база MongoDb и слушать порт заданный в перемеенной окружения MONGO_PORT, по умолчанию 5000
+
+Выполнить:
+- npm install
+- npm run dev
+
+После этого приложение доступно по адресу localhost:{PORT} , PORT берется из файла .env и по умолчанию 4001
 
 ## Questions
 
