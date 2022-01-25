@@ -4,7 +4,7 @@ import { UserSign } from '../../module-user/user.schema';
 import { config } from '../config';
 
 export interface ExtendedRequest extends Request {
-  decoded: UserSign;
+  decoded?: UserSign;
 }
 
 export const validateToken = (

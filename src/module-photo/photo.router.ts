@@ -8,6 +8,6 @@ const router = express.Router();
  * Инициализирует photo endpoints
  */
 
-router.route('/load-photos').post(validateToken, loadPhoto);
+router.route('/load-photos').get(validateToken, loadPhoto);
 
 export default router;
