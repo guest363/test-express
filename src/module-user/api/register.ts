@@ -8,7 +8,6 @@ import { UserModel } from '../user.schema';
  */
 export const register = async (req: Request, res: Response) => {
   try {
-    req.log.info(req.body);
     if (!req.body) return res.sendStatus(400);
 
     const user = await UserModel.create(req.body);
